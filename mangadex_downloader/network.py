@@ -34,14 +34,14 @@ from .errors import (
     AlreadyLoggedIn,
     HTTPException,
     LoginFailed,
-    MangaDexException,
+    # MangaDexException,
     NotLoggedIn,
     UnhandledHTTPError,
 )
 from .auth import OAuth2, LegacyAuth
 from .utils import QueueWorker
 from .progress_bar import progress_bar_manager as pbm
-from requests_doh import DNSOverHTTPSAdapter, set_dns_provider
+# from requests_doh import DNSOverHTTPSAdapter, set_dns_provider
 from concurrent.futures import Future, TimeoutError
 
 
@@ -101,7 +101,7 @@ class requestsMangaDexSession(ModifiedSession):
     uploads_url = uploads_url
     forums_url = forums_url
 
-    """A requests session for MangaDex only. 
+    """A requests session for MangaDex only.
 
     Sending other HTTP(s) requests to other sites will break the session
     """
@@ -561,27 +561,27 @@ class NetworkManager:
         """Add delay for each requests for MangaDex session"""
         self.mangadex.delay = delay
 
-    def set_doh(self, provider):
-        """Set DoH (DNS-over-HTTPS) for MangaDex and requests session
-
-        See https://requests-doh.mansuf.link/en/stable/doh_providers.html for all available DoH providers
-        """  # noqa: E501
-        try:
-            if self._doh is not None:
-                set_dns_provider(provider)
-                return
-
-            doh = DNSOverHTTPSAdapter(provider)
-        except ValueError as e:
-            raise MangaDexException(e)
-
-        self._doh = doh
-
-        self.mangadex.mount("https://", doh)
-        self.mangadex.mount("http://", doh)
-
-        self.requests.mount("https://", doh)
-        self.requests.mount("http://", doh)
+#     def set_doh(self, provider):
+#         """Set DoH (DNS-over-HTTPS) for MangaDex and requests session
+#
+#         See https://requests-doh.mansuf.link/en/stable/doh_providers.html for all available DoH providers
+#         """  # noqa: E501
+#         try:
+#             if self._doh is not None:
+#                 set_dns_provider(provider)
+#                 return
+#
+#             doh = DNSOverHTTPSAdapter(provider)
+#         except ValueError as e:
+#             raise MangaDexException(e)
+#
+#         self._doh = doh
+#
+#         self.mangadex.mount("https://", doh)
+#         self.mangadex.mount("http://", doh)
+#
+#         self.requests.mount("https://", doh)
+#         self.requests.mount("http://", doh)
 
     def set_auth(self, auth_method):
         """Set Authentication method for MangaDex API (default to :class:`LegacyAuth`)"""

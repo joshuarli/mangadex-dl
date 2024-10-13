@@ -22,7 +22,7 @@
 
 import threading
 import logging
-from requests_doh import get_all_dns_provider
+# from requests_doh import get_all_dns_provider
 
 from .env import base_path, config_enabled, init
 from .utils import (
@@ -50,8 +50,8 @@ from ..language import Language
 from ..errors import MangaDexException
 
 # Fix #28
-_doh_providers = [None]
-_doh_providers.extend(get_all_dns_provider())
+#_doh_providers = [None]
+#_doh_providers.extend(get_all_dns_provider())
 
 log = logging.getLogger(__name__)
 

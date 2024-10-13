@@ -1,7 +1,7 @@
 import sys
 import time
 import traceback
-from .update import check_update
+# from .update import check_update
 from .args_parser import get_args
 from .url import build_url
 from .utils import (
@@ -113,7 +113,7 @@ def _main(argv):
         logout_with_err_handler(args)
 
         # Check update
-        check_update()
+        # check_update()
 
         # Cleaning up
         close_network_object()
