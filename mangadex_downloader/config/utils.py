@@ -48,7 +48,7 @@ __all__ = (
     "validate_sort_by",
     "validate_http_retries",
     "validate_download_mode",
-    # "validate_doh_provider",
+    "validate_doh_provider",
     "validate_log_level",
     "validate_progress_bar_layout",
     "validate_stacked_progress_bar_order",
@@ -217,6 +217,9 @@ def validate_download_mode(val):
 
     return val
 
+
+def validate_doh_provider(val):
+    return val
 
 # def validate_doh_provider(val):
 #     providers = [None]
