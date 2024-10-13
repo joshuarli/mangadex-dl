@@ -23,7 +23,7 @@ def _get_volume(x):
 
 def _get_or_minus_one(x):
     if not x:
-        return "-1"
+        return "UNKNOWN"
 
     return x
 
